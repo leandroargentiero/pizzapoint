@@ -9,7 +9,7 @@ const Home = () => {
     <Container as="main" py={16}>
       <Header />
       <FormGrid />
-      <Divider my={10} />
+      <Divider borderColor="whiteAlpha.300" my={10} />
       <ResultGrid />
     </Container>
   );
