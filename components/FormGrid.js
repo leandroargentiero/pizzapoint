@@ -27,15 +27,31 @@ const FormGrid = () => {
   } = recipe;
 
   return (
-    <Panel mt={20}>
+    <Panel mt={32}>
       <Stack gap={2} as="form">
         <FormControl>
           <FormLabel>Pizza Style</FormLabel>
-          <Select icon={<ChevronDownIcon />} variant="filled" size="md">
+          <Select
+            icon={<ChevronDownIcon />}
+            variant="outline"
+            bg="whiteAlpha.50"
+            borderColor="whiteAlpha.200"
+            _hover={{
+              bg: 'whiteAlpha.200',
+            }}
+            _active={{
+              bg: 'whiteAlpha.300',
+            }}
+            _focus={{
+              boxShadow:
+                '0 0 1px 2px rgba(99, 179, 237, .50), 0 1px 1px rgba(0, 0, 0, .15)',
+            }}
+            size="md"
+          >
             <option value="option1">{style}</option>
           </Select>
         </FormControl>
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        <Grid templateColumns="repeat(2, 1fr)" rowGap={2} columnGap={6}>
           <GridItem>
             <NumberInput label="Dough Balls" value={doughballs} icon />
           </GridItem>

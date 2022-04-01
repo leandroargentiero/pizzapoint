@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { QuestionIcon } from '@chakra-ui/icons';
 import {
   Box,
-  Button,
   FormControl,
   FormLabel,
   HStack,
@@ -10,7 +9,9 @@ import {
   Center,
   Input,
 } from '@chakra-ui/react';
+
 import { useRecipeContext } from '@/context/RecipeContext';
+import IconButton from './IconButton';
 
 const NumberInput = ({ label, step = 1, value, min = step, icon, unit }) => {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -37,13 +38,22 @@ const NumberInput = ({ label, step = 1, value, min = step, icon, unit }) => {
     <FormControl>
       <FormLabel htmlFor={label}>
         {label}{' '}
-        {icon ? <QuestionIcon w={3} color="gray.500" mt="-0.5" /> : null}
+        {icon ? <QuestionIcon w={3} color="whiteAlpha.500" mt="-0.5" /> : null}
       </FormLabel>
       <HStack maxW="320px" alignItems="stretch">
-        <Button onClick={handleDec} disabled={isDisabled}>
-          -
-        </Button>
-        <Box w="full" bg="gray.100" borderRadius={4}>
+        <IconButton
+          value="-"
+          onClick={handleDec}
+          isDisabled={isDisabled}
+          test="test"
+        />
+        <Box
+          w="full"
+          border="1px solid"
+          borderColor="whiteAlpha.200"
+          background="whiteAlpha.50"
+          borderRadius={4}
+        >
           <Center h="100%">
             <Text>
               {value}
@@ -57,7 +67,7 @@ const NumberInput = ({ label, step = 1, value, min = step, icon, unit }) => {
           display="none"
           defaultValue={value}
         />
-        <Button onClick={handleInc}>+</Button>
+        <IconButton value="+" onClick={handleInc} />
       </HStack>
     </FormControl>
   );
