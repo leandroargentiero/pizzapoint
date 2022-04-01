@@ -8,7 +8,7 @@ const Odometer = dynamic(import('react-odometerjs'), {
   ssr: false,
 });
 
-const ResultGridItem = ({ value }) => {
+const ResultGridItem = ({ name, value }) => {
   const [odometerValue, setOdometerValue] = useState(0);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ResultGridItem = ({ value }) => {
         size="xs"
         fontWeight="medium"
       >
-        {'name'}
+        {name}
       </Heading>
       <Heading color="whiteAlpha.900" fontWeight="light">
         <Text as="span" fontSize="5xl">
