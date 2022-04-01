@@ -1,4 +1,4 @@
-import { Container, Divider } from '@chakra-ui/react';
+import { Container, VStack } from '@chakra-ui/react';
 
 import ResultGrid from '@/components/ResultGrid';
 import Header from '@/components/Header';
@@ -8,9 +8,10 @@ const Home = () => {
   return (
     <Container as="main" py={16}>
       <Header />
-      <FormGrid />
-      <Divider borderColor="whiteAlpha.300" my={8} />
-      <ResultGrid />
+      <VStack gap={8}>
+        <FormGrid />
+        <ResultGrid />
+      </VStack>
     </Container>
   );
 };

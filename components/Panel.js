@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 const Panel = ({ children, ...rest }) => (
   <Box
     p={4}
+    w="full"
     borderRadius={12}
     backgroundColor="rgba(255, 
   255, 255, 0.1)"
