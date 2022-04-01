@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { QuestionIcon } from '@chakra-ui/icons';
 import {
   Box,
@@ -9,31 +10,26 @@ import {
   Center,
   Input,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useRecipeContext } from '@/context/RecipeContext';
 
-const NumberInput = ({
-  label = 'label',
-  step = 1,
-  defaultValue = 3,
-  min = step,
-  icon,
-  unit,
-}) => {
-  const [count, setCount] = useState(defaultValue);
+const NumberInput = ({ label, step = 1, value, min = step, icon, unit }) => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const { handleRecipeChange } = useRecipeContext();
+  const ingredient = label.split(' ').join('').toLocaleLowerCase();
 
   useEffect(() => {
-    +count === +min ? setIsDisabled(true) : setIsDisabled(false);
-  }, [count, min]);
+    +value === +min ? setIsDisabled(true) : setIsDisabled(false);
+  }, [value, min]);
 
   const handleInc = () => {
-    setCount(+count + +step);
+    const newVal = value + +step;
+    handleRecipeChange(ingredient, newVal);
   };
 
   const handleDec = () => {
-    if (count !== min) {
-      setCount(+count - +step);
+    if (value !== min) {
+      const newVal = value - +step;
+      handleRecipeChange(ingredient, newVal);
     }
   };
 
@@ -50,7 +46,7 @@ const NumberInput = ({
         <Box w="full" bg="gray.100" borderRadius={4}>
           <Center h="100%">
             <Text>
-              {count}
+              {value}
               {unit}
             </Text>
           </Center>
@@ -59,7 +55,7 @@ const NumberInput = ({
           id={label}
           name={label.split(' ').join('').toLocaleLowerCase()}
           display="none"
-          defaultValue={count}
+          defaultValue={value}
         />
         <Button onClick={handleInc}>+</Button>
       </HStack>
